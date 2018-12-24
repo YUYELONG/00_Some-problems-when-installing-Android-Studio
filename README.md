@@ -1,7 +1,10 @@
-# Summary of Arm Competition
+Summary of Arm Competition
+===
+
 Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在Github上的几篇文章的思路；补充一下使用Tengine过程中遇到的问题，最后讲讲这个比赛还有的不足之处和一些结果吧。
 
 一、几篇文章的思路：
+---
 实际上之前几篇文章都是按照这个比赛的完成顺序来的，在03当中讲述了整个Tengine_FaceDetector的框架，这个框架的顺序也正好是按照这个比赛的完成顺序与文章的顺序来的：
 （1）首先你要做安卓肯定还是要用到Android Studio的吧，所以00讲述了在安装Android Studio上的一些问题；
 （2）然后尝试用Tengine在Android上的部署，所以有01这篇文章，但是用的模型是不一样的，是物体分类的模型，并没有用到人脸检测；
@@ -15,6 +18,7 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
  04_Summary_of_Competition
  
 二、整体框架
+---
 那我们就从这个项目的最终完成版说起吧，之前说了本文主要以解读代码为主，那就先来看看整个项目工程的框架。主要是分成这么几部分，我们一一介绍：
 1、Android平台的java语言，这部分主要是对安卓手机界面进行编程，看着《第一行代码》一步步走下去就行了，这部分算是顶层代码吧~，主要就是activity文件以及界面xml文件。
 2、JNI接口，这是个啥玩意呢？请看词条：https://baike.so.com/doc/508314-538197.html
@@ -23,6 +27,7 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
 这部分就是底层代码啦，主要就在cpp文件夹里，里面是Tengine框架的调用，我们的数据图像处理就会在这里使用。在第二部分将会重点讲述这部分内容。
 
 三、Tengine使用
+---
 调用 init_tengine_library 函数初始化
 调用 load_model 函数载入训练好的模型
 这里需要指定是哪个框架的模型，如tensorflow、caffe、mxnet、onnx；
@@ -37,6 +42,7 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
 最后在退出程序前依次释放各个申请的动态空间
 
 四、Tengine_FaceDetector
+---
 最后再讲述一下这个Tengine_FaceDetector的基本流程吧：
 （1）Java层使用一个org.opencv.android.JavaCameraView布局来调用摄像头获取图像
 （2）使用opencv自带的分类器实现人脸框图
