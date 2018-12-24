@@ -1,4 +1,15 @@
-# 00_Some-problems-when-installing-Android-Studio
-介绍一些安装AndroidStudio的问题以及针对oppo r11手机Android Studio的一次开发经历
+# Summary of Arm Competition
+Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在Github上的几篇文章的思路；补充一下使用Tengine过程中遇到的问题，最后讲讲这个比赛还有的不足之处和一些结果吧。
 
-文档00_Some problems when installing Android Studio就是整个实验经历的记录
+一、几篇文章的思路：
+实际上之前几篇文章都是按照这个比赛的完成顺序来的，在03当中讲述了整个Tengine_FaceDetector的框架，这个框架的顺序也正好是按照这个比赛的完成顺序与文章的顺序来的：
+（1）首先你要做安卓肯定还是要用到Android Studio的吧，所以00讲述了在安装Android Studio上的一些问题；
+（2）然后尝试用Tengine在Android上的部署，所以有01这篇文章，但是用的模型是不一样的，是物体分类的模型，并没有用到人脸检测；
+（3）有一天队友告诉我人脸检测要用到OpenCV库，于是又学习了一下OpenCV在Android上面的装载，所以有02这篇文章讲述了Android_OpenCV
+（4）最后我们将之前的总和起来就实现了03_Tengine_FaceDetector
+
+# 00_Some_problems_when_installing_Android_Studio
+# 01_Tengine_Android
+# 02_Android_OpenCV
+# 03_Tengine_FaceDetector
+# 04_Summary_of_Competition
