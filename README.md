@@ -5,17 +5,18 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
 
 一、几篇文章的思路：
 ---
-实际上之前几篇文章都是按照这个比赛的完成顺序来的，在03当中讲述了整个Tengine_FaceDetector的框架，这个框架的顺序也正好是按照这个比赛的完成顺序与文章的顺序来的：
-（1）首先你要做安卓肯定还是要用到Android Studio的吧，所以00讲述了在安装Android Studio上的一些问题；
-（2）然后尝试用Tengine在Android上的部署，所以有01这篇文章，但是用的模型是不一样的，是物体分类的模型，并没有用到人脸检测；
-（3）有一天队友告诉我人脸检测要用到OpenCV库，于是又学习了一下OpenCV在Android上面的装载，所以有02这篇文章讲述了Android_OpenCV
-（4）最后我们将之前的总和起来就实现了03_Tengine_FaceDetector
+实际上之前几篇文章都是按照这个比赛的完成顺序来的，在03当中讲述了整个Tengine_FaceDetector的框架，这个框架的顺序也正好是按照这个比赛的完成顺序与文章的顺序来的：<br>
+（1）首先你要做安卓肯定还是要用到Android Studio的吧，所以00讲述了在安装Android Studio上的一些问题；<br>
+（2）然后尝试用Tengine在Android上的部署，所以有01这篇文章，但是用的模型是不一样的，是物体分类的模型，并没有用到人脸检测；<br>
+（3）有一天队友告诉我人脸检测要用到OpenCV库，于是又学习了一下OpenCV在Android上面的装载，所以有02这篇文章讲述了Android_OpenCV<br>
+（4）最后我们将之前的总和起来就实现了03_Tengine_FaceDetector<br>
+（5）04其实就是我们对这场比赛的总结了！<br>
 
- 00_Some_problems_when_installing_Android_Studio
- 01_Tengine_Android
- 02_Android_OpenCV
- 03_Tengine_FaceDetector
- 04_Summary_of_Competition
+ 00_Some_problems_when_installing_Android_Studio<br>
+ 01_Tengine_Android<br>
+ 02_Android_OpenCV<br>
+ 03_Tengine_FaceDetector<br>
+ 04_Summary_of_Competition<br>
  
 二、整体框架
 ---
