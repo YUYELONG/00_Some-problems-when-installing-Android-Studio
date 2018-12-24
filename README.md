@@ -1,3 +1,4 @@
+
 Summary of Arm Competition
 ===
 
@@ -31,6 +32,7 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
 
 三、Tengine使用
 ---
+https://github.com/OAID/Tengine/blob/master/doc/build_android.md
 调用 init_tengine_library 函数初始化<br>
 调用 load_model 函数载入训练好的模型<br>
 这里需要指定是哪个框架的模型，如tensorflow、caffe、mxnet、onnx；<br>
