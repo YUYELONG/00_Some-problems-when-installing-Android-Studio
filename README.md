@@ -51,3 +51,13 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
 （2）使用opencv自带的分类器实现人脸框图<br>
 （3）将人脸框图灰度图传给底层使用tensorflow模型（model3model.pb文件）输出人脸的15个特征点坐标，15个特征点坐标在模型输出的 1*30数组元素里面。分别是x1 y1 x2 y2 ......<br>
 （4）得到15个特征点的数据以后可以在java层画出特征点位置。<br>
+
+五、关于Code
+---
+(1)activity_main.xml文件：手机app的页面布局文件<br>
+(2)MainActivity.java文件：主活动java文件<br>
+(3)model3model.pb文件：tensorflow模型文件<br>
+(4)native-lib.cpp文件：JNI文件<br>
+(5)tengine_c_api.h文件：Tengine API库文件<br>
+(6)Tengine_Wrapper.cpp文件：Tengine_Wrapper调用具体函数<br>
+(7)Tengine_Wrapper.h文件：Tengine_Wrapper库文件<br>
