@@ -31,23 +31,23 @@ Abstract: 这是一篇关于这次Arm比赛的文章，我想解释一下发在G
 
 三、Tengine使用
 ---
-调用 init_tengine_library 函数初始化
-调用 load_model 函数载入训练好的模型
-这里需要指定是哪个框架的模型，如tensorflow、caffe、mxnet、onnx；
-需要在先前的安装中配置 makefile.config 文件，解除 CONFIG_XXX_SERIALIZER=y 行的注释来添加对 XXX 模型的支持
-调用 create_runtime_graph 函数创建图
-调用 get_graph_input_tensor 获取输入Tensor并用 set_tensor_shape 设置输入Tensor的shape
-调用 prerun_graph 函数预启动图
-调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer_size 获取输出的shape
-向 input_data 写入输入的数据，并调用 set_tensor_buffer 把数据转移到输入Tensor上
-调用 run_graph 运行图（做一次前向传播）
-调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer 取得缓冲区上的数据
-最后在退出程序前依次释放各个申请的动态空间
+调用 init_tengine_library 函数初始化<br>
+调用 load_model 函数载入训练好的模型<br>
+这里需要指定是哪个框架的模型，如tensorflow、caffe、mxnet、onnx；<br>
+需要在先前的安装中配置 makefile.config 文件，解除 CONFIG_XXX_SERIALIZER=y 行的注释来添加对 XXX 模型的支持<br>
+调用 create_runtime_graph 函数创建图<br>
+调用 get_graph_input_tensor 获取输入Tensor并用 set_tensor_shape 设置输入Tensor的shape<br>
+调用 prerun_graph 函数预启动图<br>
+调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer_size 获取输出的shape<br>
+向 input_data 写入输入的数据，并调用 set_tensor_buffer 把数据转移到输入Tensor上<br>
+调用 run_graph 运行图（做一次前向传播）<br>
+调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer 取得缓冲区上的数据<br>
+最后在退出程序前依次释放各个申请的动态空间<br>
 
 四、Tengine_FaceDetector
 ---
-最后再讲述一下这个Tengine_FaceDetector的基本流程吧：
-（1）Java层使用一个org.opencv.android.JavaCameraView布局来调用摄像头获取图像
-（2）使用opencv自带的分类器实现人脸框图
-（3）将人脸框图灰度图传给底层使用tensorflow模型（model3model.pb文件）输出人脸的15个特征点坐标，15个特征点坐标在模型输出的 1*30数组元素里面。分别是x1 y1 x2 y2 ......
-（4）得到15个特征点的数据以后可以在java层画出特征点位置。
+最后再讲述一下这个Tengine_FaceDetector的基本流程吧：<br>
+（1）Java层使用一个org.opencv.android.JavaCameraView布局来调用摄像头获取图像<br>
+（2）使用opencv自带的分类器实现人脸框图<br>
+（3）将人脸框图灰度图传给底层使用tensorflow模型（model3model.pb文件）输出人脸的15个特征点坐标，15个特征点坐标在模型输出的 1*30数组元素里面。分别是x1 y1 x2 y2 ......<br>
+（4）得到15个特征点的数据以后可以在java层画出特征点位置。<br>
