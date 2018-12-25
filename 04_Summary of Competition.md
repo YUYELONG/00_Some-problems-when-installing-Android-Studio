@@ -72,5 +72,5 @@ mygraypic = mGray.rowRange(y1, y2).colRange(x1, x2);
 ---
 
 &emsp;&emsp;这个比赛总共历时4个礼拜的零零碎碎的时间，要感谢OpenAILab提供的很多资源，也要感谢公司技术的支持，还有俱乐部各位小伙伴答疑解惑，还有队友的友情帮助！在这个项目中我所做的基本是Android的部署，对模型的训练还不是很清楚，这也是接下去要学习的方向。最后的最后，上一张结果照片：<br>
-![](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/results/1.png 正确结果图)
+![](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/results/1.png "正确结果图")
 当然还有误识别的时候，原因在于OpenCV自带的分类器效果不太好：<br>
