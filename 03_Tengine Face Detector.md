@@ -77,26 +77,76 @@ float TengineWrapper::RunMobilenet(cv::Mat image)
 二、Tengine使用
 ---
 大致上的调用流程如下：
-'调用 init_tengine_library 函数初始化'
-'调用 load_model 函数载入训练好的模型'
-'这里需要指定是哪个框架的模型，如tensorflow、caffe、mxnet、onnx；
-需要在先前的安装中配置 makefile.config 文件，解除 CONFIG_XXX_SERIALIZER=y 行的注释来添加对 XXX 模型的支持
-调用 create_runtime_graph 函数创建图
-调用 get_graph_input_tensor 获取输入Tensor并用 set_tensor_shape 设置输入Tensor的shape
-调用 prerun_graph 函数预启动图
-调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer_size 获取输出的shape
-向 input_data 写入输入的数据，并调用 set_tensor_buffer 把数据转移到输入Tensor上
-调用 run_graph 运行图（做一次前向传播）
-调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer 取得缓冲区上的数据
-最后在退出程序前依次释放各个申请的动态空间
+`调用 init_tengine_library 函数初始化`
+`调用 load_model 函数载入训练好的模型`
+`调用 create_runtime_graph 函数创建图`
+`调用 get_graph_input_tensor 获取输入Tensor并用 set_tensor_shape 设置输入Tensor的shape`
+`调用 prerun_graph 函数预启动图`
+`调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer_size 获取输出的shape`
+`向 input_data 写入输入的数据，并调用 set_tensor_buffer 把数据转移到输入Tensor上`
+`调用 run_graph 运行图（做一次前向传播）`
+`调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer 取得缓冲区上的数据`
+`最后在退出程序前依次释放各个申请的动态空间`
 
 他们所对应的代码如下，基本都在Tengine_Wrapper.cpp里面：
+```
+int TengineWrapper::InitMobilenet()
+{
+    init_tengine_library();
+    if (request_tengine_version("0.1") < 0)
+        return -1;
+    const char* mobilenet_tf_model = "/data/local/tmp/model3model.pb";
+    const char* format = "tensorflow";
 
+    if (load_model("mobilenet", format, mobilenet_tf_model) < 0)
+        return 4;
 
+    g_mobilenet = create_runtime_graph("graph0","mobilenet",NULL);
+    if (!check_graph_valid(g_mobilenet))
+        return 5;
 
+    const int img_h = 96;
+    const int img_w = 96;
+    int image_size = img_h * img_w;
+    g_mobilenet_input = (float *) malloc(sizeof(float) * image_size);
+    int dims[4] = {1, 1, img_h, img_w};
 
+    input_tensor = get_graph_input_tensor(g_mobilenet, 0, 0);
+    if(!check_tensor_valid(input_tensor))
+        return 6;
 
+    set_tensor_shape(input_tensor, dims, 4);
+    set_tensor_buffer(input_tensor, g_mobilenet_input, image_size * 4);
 
+    if( prerun_graph(g_mobilenet)!=0 )
+        return 1;
+    return 0;
+}
+```
+```
+float TengineWrapper::RunMobilenet(cv::Mat image)
+{
+    if( get_input_data(image, g_mobilenet_input, 96, 96) )
+        return 7;
+    if( !run_graph(g_mobilenet,1))
+        return 2;
+    output_tensor = get_graph_output_tensor(g_mobilenet, 0, 0);
+    float *data = (float *)get_tensor_buffer(output_tensor);
+    return 0;
+}
+```
+数据返回到JNI层，随后从JNI层返回到java层使用。至此使用Tengine就可以基本完成了，但是最后能够依次释放一下各个申请的动态空间，但是好像不释放也没啥关系：
+```
+int TengineWrapper::ReleaseMobilenet()
+{
+    sleep(1);
+    free(g_mobilenet_input);
+    postrun_graph(g_mobilenet);
+    destroy_runtime_graph(g_mobilenet);
+    remove_model("mobilenet");
+    return 0;
+}
+```
 
 三、Tengine_FaceDetector
 ---
