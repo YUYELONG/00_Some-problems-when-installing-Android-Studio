@@ -44,7 +44,8 @@ public class MainActivity extends Activity {
 &emsp;&emsp;那么在做这个项目的时候呢就有一个问题出现了：顶层activity文件中如果我要输入一个图片文件如Mat格式的数据到底层去处理，数据接口应该怎么写呢？这个问题曾经困扰过，因为一开始的时候我是用Mat格式的数据直接传的，后来发现这样传递数据根本没有传到底层，而且还会导致app闪退，幸好这个已经有前人做过了，下面这篇博文就讲述了java层到JNI的Mat数据的接口处理：<br>
 https://blog.csdn.net/brcli/article/details/76407986<br>
 https://blog.csdn.net/pplxlee/article/details/52713311<br>
-&emsp;&emsp;简单说来就是这样：java层新建一个mat数据，然后通过调用JNI接口函数传入mat.getNativeObjAddr()就可以将mat数据传进函数，
+&emsp;&emsp;简单说来就是这样：java层新建一个mat数据，然后通过调用JNI接口函数传入mat.getNativeObjAddr()就可以将mat数据传进函数，例如：<br>
+```if(RunMobilenet("/data/local/tmp/myface.png")>0)```          
 
 
 
