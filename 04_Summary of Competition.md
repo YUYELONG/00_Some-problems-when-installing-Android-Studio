@@ -46,11 +46,11 @@ https://blog.csdn.net/zssyu0416/article/details/82852339<br>
 ---
 
 ***1、调试的过程——Log使用、return使用***<br>
-Android Studio的调试主要依赖于Log日志的使用，《第一行代码》当中的1.4节讲述了Log日志的使用方式和类型。但是这里有一个问题，Log日志的调试只能停留在java层，对于底下的C++/C底层代码无能为力，于是这就会有一个问题是底下的代码我们无法调试。搜索了网上的信息之后发现Android Studio也可以调试底层的C++/C代码，但是我还没有试过。这里讲述一下我使用的比较笨的调试方法——多用return。<br>
+&emsp;&emsp;Android Studio的调试主要依赖于Log日志的使用，《第一行代码》当中的1.4节讲述了Log日志的使用方式和类型。但是这里有一个问题，Log日志的调试只能停留在java层，对于底下的C++/C底层代码无能为力，于是这就会有一个问题是底下的代码我们无法调试。搜索了网上的信息之后发现Android Studio也可以调试底层的C++/C代码，但是我还没有试过。这里讲一下我使用的比较笨的调试方法——多用return。<br>
 想要底层的数据传到java层只有一种方式，return数据，所以我们可以将处理过的数据经过return返回到顶层。打印的Log日志信息可以通过搜索找到特定的一句，再点击时间找到程序运行的时间点可以查看上下的信息。<br>
 
 ***2、程序在手机上运行闪退***<br>
-这个问题也是困扰多次的情况，其实这个时候我们也可以使用Log日志查看程序能够运行到哪里，因为出现闪退的地方后面的程序是运行不下去的，会出现红色报错。通过这种方式可以查看程序闪退的地方在哪里，然后才是去解决，比如出现下面红色的错误提示：<br>
+&emsp;&emsp;这个问题也是困扰多次的情况，其实这个时候我们也可以使用Log日志查看程序能够运行到哪里，因为出现闪退的地方后面的程序是运行不下去的，会出现红色报错。通过这种方式可以查看程序闪退的地方在哪里，然后才是去解决，比如出现下面红色的错误提示：<br>
 Fatal signal 11 (SIGSEGV), code 1, fault addr 0xc91303b0 in tid 3587 (RenderThread)
 下面可以说明一下出现这种闪退的原因，列出一些我遇到过的出现闪退的原因：<br>
 （1）load不成功，原因是模型或者有些图片、文件在手机上没找到<br>
@@ -59,11 +59,11 @@ Fatal signal 11 (SIGSEGV), code 1, fault addr 0xc91303b0 in tid 3587 (RenderThre
 总之出现闪退肯定是你的程序出现了问题，反复查找错误就行了<br>
 
 ***3、数据输出到文件，matlab***<br>
-还有一种调试的方式是选择将数据直接输出到外面文件，因为底层是C++/C语言，所以按照C对文件的处理是可以执行的，但是这里的问题是这个文件需要先以一个空白文档形式adb传送到手机上。然后数据传到该文档之后再使用adb pull传出来之电脑。<br>
+&emsp;&emsp;还有一种调试的方式是选择将数据直接输出到外面文件，因为底层是C++/C语言，所以按照C对文件的处理是可以执行的，但是这里的问题是这个文件需要先以一个空白文档形式adb传送到手机上。然后数据传到该文档之后再使用adb pull传出来之电脑。<br>
 我在这个工程里面就用过这种方法将一张照片的灰度图数据传出到txt文档，再用adb pull传出到电脑，然后将数据传送到Matlab里面显示图像.<br>
 
 ***4、CV里面的坐标轴***<br>
-千万要注意，横轴和竖轴是反的！反的！这个你把照片调出来看看就应该知道了。Mat(x,y)，有些时候要读取一定范围的mat，应该是mat.rowrange(y).colrange(x).
+&emsp;&emsp;千万要注意，横轴和竖轴是反的！反的！这个你把照片调出来看看就应该知道了。Mat(x,y)，有些时候要读取一定范围的mat，应该是mat.rowrange(y).colrange(x).
 ```
 mygraypic = new Mat();
 mygraypic = mGray.rowRange(y1, y2).colRange(x1, x2);
@@ -74,3 +74,4 @@ mygraypic = mGray.rowRange(y1, y2).colRange(x1, x2);
 &emsp;&emsp;这个比赛总共历时4个礼拜的零零碎碎的时间，要感谢OpenAILab提供的很多资源，也要感谢公司技术的支持，还有俱乐部各位小伙伴答疑解惑，还有队友的友情帮助！在这个项目中我所做的基本是Android的部署，对模型的训练还不是很清楚，这也是接下去要学习的方向。最后的最后，上一张结果照片：<br>
 ![](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/results/1.png "正确结果图")
 当然还有误识别的时候，原因在于OpenCV自带的分类器效果不太好：<br>
+![](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/results/2.png "错误结果图")
