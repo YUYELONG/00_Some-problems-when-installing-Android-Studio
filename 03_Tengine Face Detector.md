@@ -76,19 +76,19 @@ float TengineWrapper::RunMobilenet(cv::Mat image)
 
 二、Tengine使用
 ---
-大致上的调用流程如下：
-`调用 init_tengine_library 函数初始化`
-`调用 load_model 函数载入训练好的模型`
-`调用 create_runtime_graph 函数创建图`
-`调用 get_graph_input_tensor 获取输入Tensor并用 set_tensor_shape 设置输入Tensor的shape`
-`调用 prerun_graph 函数预启动图`
-`调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer_size 获取输出的shape`
-`向 input_data 写入输入的数据，并调用 set_tensor_buffer 把数据转移到输入Tensor上`
-`调用 run_graph 运行图（做一次前向传播）`
-`调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer 取得缓冲区上的数据`
-`最后在退出程序前依次释放各个申请的动态空间`
+大致上的调用流程如下：<br>
+`调用 init_tengine_library 函数初始化`<br>
+`调用 load_model 函数载入训练好的模型`<br>
+`调用 create_runtime_graph 函数创建图`<br>
+`调用 get_graph_input_tensor 获取输入Tensor并用 set_tensor_shape 设置输入Tensor的shape`<br>
+`调用 prerun_graph 函数预启动图`<br>
+`调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer_size 获取输出的shape`<br>
+`向 input_data 写入输入的数据，并调用 set_tensor_buffer 把数据转移到输入Tensor上`<br>
+`调用 run_graph 运行图（做一次前向传播）`<br>
+`调用 get_graph_output_tensor 获取输出Tensor并用 get_tensor_buffer 取得缓冲区上的数据`<br>
+`最后在退出程序前依次释放各个申请的动态空间`<br>
 
-他们所对应的代码如下，基本都在Tengine_Wrapper.cpp里面：
+他们所对应的代码如下，基本都在Tengine_Wrapper.cpp里面：<br>
 ```
 int TengineWrapper::InitMobilenet()
 {
