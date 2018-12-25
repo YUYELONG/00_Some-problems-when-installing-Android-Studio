@@ -31,3 +31,23 @@ Java_com_tengine_openailab_mobilenet_MainActivity_TengineWrapperInit(
     return 0;
 }
 ```
+这里其实你就会发现一些东西，比如在JNI里面函数的定义与申明的不同，首先是数据类型的转换，java与JNI当中是一一对应的。JNI里面有特定的数组格式：比如jobjectArray、jbooleanArray、jbyteArray、jcharArray、jshortArray、jintArray、jlongArray、jfloatArray、jdoubleArray等，还有jclass、jstring、jthrowable等。那么其实这里就有个问题了，为什么顶层的java语言能够调用JNI接口文件呢？这就是下面这段话的功劳：
+```
+public class MainActivity extends Activity {
+
+    // Used to load the 'native-lib' library on application startup.
+    static {
+        System.loadLibrary("native-lib");
+    }
+```
+看到了吧这里在MainActivity的一开始就load了这个名字叫做native-lib的库。所以他们能够链接起来。  
+&emsp;&emsp;那么在做这个项目的时候呢就有一个问题出现了：顶层activity文件中如果我要输入一个图片文件如Mat格式的数据到底层去处理，数据接口应该怎么写呢？这个问题曾经困扰过，因为一开始的时候我是用Mat格式的数据直接传的，后来发现这样传递数据根本没有传到底层，而且还会导致app闪退，幸好这个已经有前人做过了，下面这篇博文就讲述了java层到JNI的Mat数据的接口处理：<br>
+https://blog.csdn.net/brcli/article/details/76407986<br>
+https://blog.csdn.net/pplxlee/article/details/52713311<br>
+&emsp;&emsp;简单说来就是这样：java层新建一个mat数据，然后通过调用JNI接口函数传入mat.getNativeObjAddr()就可以将mat数据传进函数，
+
+
+
+
+
+
