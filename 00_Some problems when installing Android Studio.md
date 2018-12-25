@@ -22,22 +22,19 @@ https://www.cnblogs.com/sunyl/p/5915144.html
 
   
 
-***针对oppo r11手机Android Studio的一次开发经历（调用摄像头20181128）***
+针对oppo r11手机Android Studio的一次开发经历（调用摄像头20181128）
+---
 
+1、使用butterknife<br>
+https://blog.csdn.net/qq_31852701/article/details/80312719<br>
+https://blog.csdn.net/qq_33792946/article/details/53816552<br>
+https://blog.csdn.net/u010937230/article/details/60762472<br>
+https://blog.csdn.net/androidwubo/article/details/78835706<br>
+https://blog.csdn.net/qq_31852701/article/details/80312719<br>
 
-1、使用butterknife
-https://blog.csdn.net/qq_31852701/article/details/80312719
-https://blog.csdn.net/qq_33792946/article/details/53816552
-https://blog.csdn.net/u010937230/article/details/60762472
-https://blog.csdn.net/androidwubo/article/details/78835706
-https://blog.csdn.net/qq_31852701/article/details/80312719
-
-项目下面的build.gradle
-
-app下面的build.gradle
-
-2、activity code:
-https://blog.csdn.net/qq_33792946/article/details/54094307
+2、activity code:<br>
+https://blog.csdn.net/qq_33792946/article/details/54094307<br>
+```
 package com.example.yuyelong.helloword;
 
 import android.content.Intent;
@@ -80,21 +77,23 @@ public class HelloWorldActivity extends AppCompatActivity {
         }
     }
 }
-3、针对oppo r11手机安装apk问题：
-在gradle.properties上加一句：这样以后安装没问题，但是还是会出现闪退的现象。
+```
+3、针对oppo r11手机安装apk问题：<br>
+在gradle.properties上加一句：这样以后安装没问题，但是还是会出现闪退的现象。<br>
+```
 android.injected.testOnly=false
+```
 
-oppo手机安装apk后闪退的处理：
-https://blog.csdn.net/zhao8856234/article/details/79958867
-在settings里面去掉下面这个功能：
+oppo手机安装apk后闪退的处理：<br>
+https://blog.csdn.net/zhao8856234/article/details/79958867<br>
 
 
-生成签名文件请参考《第一行代码》15.1
-其中key store path的路径除了文件夹再加上自己的新命名jks文件即可 
+生成签名文件请参考《第一行代码》15.1<br>
+其中key store path的路径除了文件夹再加上自己的新命名jks文件即可 <br>
 
-4、打开oppo手机的开发者选项参考：版本号点五下，还有这种骚操作真是
-https://jingyan.baidu.com/article/a501d80c37cc83ec620f5e5d.html
-https://blog.csdn.net/yeyuewushang/article/details/80179803
+4、打开oppo手机的开发者选项参考：版本号点五下，还有这种骚操作真是<br>
+https://jingyan.baidu.com/article/a501d80c37cc83ec620f5e5d.html<br>
+https://blog.csdn.net/yeyuewushang/article/details/80179803<br>
 
 5、结果
   
