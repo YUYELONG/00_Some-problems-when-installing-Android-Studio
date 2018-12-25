@@ -12,11 +12,11 @@ Abstract: 这是几篇关于这次Arm比赛的文章，我想解释一下发在G
 （4）最后我们将之前的总和起来就实现了03_Tengine_FaceDetector<br>
 （5）04其实就是我们对这场比赛的总结了！<br>
 
- 00_Some_problems_when_installing_Android_Studio<br>
- 01_Tengine_Android<br>
- 02_Android_OpenCV<br>
- 03_Tengine_FaceDetector<br>
- 04_Summary_of_Competition<br>
+[00_Some_problems_when_installing_Android_Studio](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/00_Some%20problems%20when%20installing%20Android%20Studio.md)<br>
+[01_Tengine_Android](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/01_Tengine_Android.md)<br>
+[02_Android_OpenCV](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/02_Android%2BOpenCV.md)<br>
+[03_Tengine_FaceDetector](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/03_Tengine%20Face%20Detector.md)<br>
+[04_Summary_of_Competition](https://github.com/YUYELONG/Summary-of-Arm-Competition/blob/master/04_Summary%20of%20Competition.md)<br>
  
 二、整体框架
 ---
