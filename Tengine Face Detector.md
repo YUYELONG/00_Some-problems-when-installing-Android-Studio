@@ -1,7 +1,7 @@
 Tengine Face Detector(20181223)
 ===
 
-Preface: 在之前学习了Tengine在安卓上的相关配置(01_Tengine_Android)和Android Studio上使用OpenCV之后终于步入正题，进入我们这个比赛的内容，检测人脸的特征点。之前其实都没有好好看过代码，所以这篇文章就作为Tengine_FaceDetector的代码解读吧！其实东西做完了却不知从哪里说起，回想起来这几天做的很多事情，却非常杂乱，行文之间若有逻辑不清之处还望海涵。<br>
+&emsp;&emsp;Preface: 在之前学习了Tengine在安卓上的相关配置(01_Tengine_Android)和Android Studio上使用OpenCV之后终于步入正题，进入我们这个比赛的内容，检测人脸的特征点。之前其实都没有好好看过代码，所以这篇文章就作为Tengine_FaceDetector的代码解读吧！其实东西做完了却不知从哪里说起，回想起来这几天做的很多事情，却非常杂乱，行文之间若有逻辑不清之处还望海涵。<br>
 
 一、整体框架
 ---
@@ -14,4 +14,20 @@ public native String stringFromJNI();
 public native int TengineWrapperInit();
 public native float RunMobilenet(String file);
 public native float TengineWrapperGetTop1();
+```
+然后呢这些函数就链接到一个叫做native-lib.cpp的文件当中：  
+```
+JNIEXPORT jint JNICALL
+Java_com_tengine_openailab_mobilenet_MainActivity_TengineWrapperInit(
+        JNIEnv *env,
+        jobject /* this */) {
+    tengine_wrapper = new TengineWrapper();
+    if(!tengine_wrapper)
+        return 1;
+    int ret = tengine_wrapper->InitMobilenet();
+    if( ret!= 0) {
+        return ret;
+    }
+    return 0;
+}
 ```
