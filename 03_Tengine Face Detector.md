@@ -64,7 +64,7 @@ Java_com_tengine_openailab_mobilenet_MainActivity_RunMobilenet(
     return 0;
 }
 ```
-这里稍微解释一下这句：cv::Mat javamat = (*(cv::Mat*)mat);<br>
+这里稍微解释一下这句：`cv::Mat javamat = (*(cv::Mat*)mat);`<br>
 jlong mat是一个地址，先将它转换成mat类型指针，然后取该地址的值作为JNI里面mat变量的值，这就实现了mat数据的传递。<br>
 &emsp;&emsp;然后我们发现这个新的javamat又被传递到C++/C里面的一个函数叫做RunMobilenet()，下面我们就去看看C++里面是怎么写的。这个RunMobilenet()是class TengineWrapper里面的一个函数，定义在Tengine_Wrapper.h里面。具体的函数在Tengine_Wrapper.cpp里面。<br>
 ```
